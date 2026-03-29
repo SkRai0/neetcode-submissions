@@ -1,0 +1,25 @@
+class Solution {
+    bool isPair(char last, char cur) {
+        return (last == '(' && cur == ')') ||
+               (last == '{' && cur == '}') ||
+               (last == '[' && cur == ']');
+    }
+public:
+    bool isValid(string s) {
+        stack<char> st;
+        for(int i=0;i<s.length();i++){
+            if(st.empty()){
+                st.push(s[i]);
+            }
+            else{
+                if(isPair(st.top(), s[i])){
+                    st.pop();
+                }
+                else{
+                    st.push(s[i]);
+                }
+            }
+        }
+        return st.empty();
+    }
+};
